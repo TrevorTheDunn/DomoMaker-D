@@ -45,7 +45,8 @@ const DomoList = (props) => {
             const response = await fetch('/getDomos');
             const data = await response.json();
             setDomos(data.domos);
-        }
+        };
+        loadDomosFromServer();
     }, [props.reloadDomos]);
 
     if(domos.length === 0) {
