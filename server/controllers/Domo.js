@@ -31,7 +31,7 @@ const makeDomo = async (req, res) => {
 
 const getDomos = async (req, res) => {
     try{
-        const query = {owner: req.session.accout._id};
+        const query = {owner: req.session.account._id};
         const docs = await Domo.find(query).select('name age').lean().exec();
 
         return res.json({domos: docs});
