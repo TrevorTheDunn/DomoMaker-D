@@ -9,13 +9,14 @@ const handleDomo = (e, onDomoAdded) => {
 
     const name = e.target.querySelector('#domoName').value;
     const age = e.target.querySelector('#domoAge').value;
+    const gender = e.target.querySelector('#domoGender').value;
 
-    if(!name || !age) {
+    if(!name || !age || !gender) {
         helper.handleError('All fields are required');
         return false;
     }
 
-    helper.sendPost(e.target.action, {name, age}, onDomoAdded);
+    helper.sendPost(e.target.action, {name, age, gender}, onDomoAdded);
     return false;
 };
 
@@ -30,6 +31,8 @@ const DomoForm = (props) => {
         >
             <label htmlFor="name">Name: </label>
             <input id="domoName" type="text" name="name" placeholder="Domo Name" />
+            <label htmlFor="gender">Gender: </label>
+            <input id="domoGender" type="text" name="gender" placeholder="Domo Gender" />
             <label htmlFor="age">Age: </label>
             <input id="domoAge" type="number" min="0" name="age" />
             <input className="makeDomoSubmit" type="submit" value="Make Domo" />
@@ -62,7 +65,8 @@ const DomoList = (props) => {
             <div key={domo.id} className="domo">
                 <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace" />
                 <h3 className="domoName">Name: {domo.name}</h3>
-                <h3 className="domoAge">Age {domo.age}</h3>
+                <h3 className="domoAge">Age: {domo.age}</h3>
+                <h3 className="domoGender">Gender: {domo.gender}</h3>
             </div>
         );
     });
@@ -91,7 +95,7 @@ const App = () => {
 
 const init = () => {
     const root = createRoot(document.getElementById('app'));
-    root.render( <App />)
+    root.render( <App />);
 };
 
 window.onload = init;
